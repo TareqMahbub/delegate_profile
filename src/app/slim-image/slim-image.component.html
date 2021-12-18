@@ -1,0 +1,11 @@
+<slim [options]="slimOptions">
+  <input type="file" name="foo" />
+</slim>
+<div *ngIf="uploadedImagePath" class="card">
+  <div class="card-body">
+    <h5 class="card-title">S3 Image Path</h5>
+    <a target="_blank" href="{{ uploadedImagePath }}">{{
+      uploadedImagePath
+    }}</a>
+  </div>
+</div>
