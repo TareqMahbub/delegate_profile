@@ -40,6 +40,25 @@ export class SlimImageComponent implements OnInit {
   ) {
     const parent = this;
 
+    console.log(slim.data);
+
+    if (slim.data.input.type != 'image/jpeg') {
+      parent.toastrService.error(
+        'Please refersh and try again',
+        'Only JPG/JPEG allowed'
+      );
+      return;
+    }
+
+    const fileSize = Math.floor(slim.data.input.size / 1024 / 1024);
+    if (fileSize > 2048) {
+      parent.toastrService.error(
+        'Filesize must be less than 2MB',
+        `Large file ${fileSize} MB!`
+      );
+      return;
+    }
+
     axios
       .post('https://s5284flopg.execute-api.ap-south-1.amazonaws.com/prod', {
         name: slim.data.input.name,
